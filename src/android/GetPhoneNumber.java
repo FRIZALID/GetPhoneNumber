@@ -15,7 +15,7 @@ public class GetPhoneNumber extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-        if (action.equals("coolMethod")) {
+        if (action.equals("get")) {
             TelephonyManager telephonyManager =
                 (TelephonyManager)this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
             String result = telephonyManager.getLine1Number();
