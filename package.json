@@ -1,0 +1,31 @@
+{
+  "name": "com.enigma.nohp",
+  "version": "0.0.1",
+  "description": "Get Phone Number",
+  "cordova": {
+    "id": "com.enigma.nohp",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FRIZALID/GetPhoneNumber.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova-android",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Rizal Fadli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FRIZALID/GetPhoneNumber/issues"
+  },
+  "homepage": "https://github.com/FRIZALID/GetPhoneNumber#readme"
+}
