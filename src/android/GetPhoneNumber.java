@@ -1,11 +1,12 @@
 package com.enigma.nohp;
 
-import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import android.content.Context;
+import android.telephony.TelephonyManager;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -13,20 +14,17 @@ import org.json.JSONObject;
 public class GetPhoneNumber extends CordovaPlugin {
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("coolMethod")) {
-            String message = args.getString(0);
-            this.coolMethod(message, callbackContext);
-            return true;
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
+        if (action.equals("get")) {
+            TelephonyManager telephonyManager =
+                (TelephonyManager)this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+            String result = telephonyManager.getLine1Number();
+            if (result != null) {
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, result));
+               return true;
+            }
         }
+        callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR));
         return false;
-    }
-
-    private void coolMethod(String message, CallbackContext callbackContext) {
-        if (message != null && message.length() > 0) {
-            callbackContext.success(message);
-        } else {
-            callbackContext.error("Expected one non-empty string argument.");
-        }
     }
 }
